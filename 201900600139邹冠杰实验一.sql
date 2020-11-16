@@ -17,111 +17,111 @@ FOREIGN KEY(Sno) REFERENCES student(Sno),
 FOREIGN KEY(Cno) REFERENCES course(Cno)
 )
 
-INSERT //²åÈëµÄÊ±ºò£¬Ã»ÓĞÕÒµ½ÅúÁ¿²åÈëµÄÓï·¨£¬ËùÒÔ¾ÍÖØ¸´Ê¹ÓÃÁËINSERT INTOÓï¾ä
+INSERT //æ’å…¥çš„æ—¶å€™ï¼Œæ²¡æœ‰æ‰¾åˆ°æ‰¹é‡æ’å…¥çš„è¯­æ³•ï¼Œæ‰€ä»¥å°±é‡å¤ä½¿ç”¨äº†INSERT INTOè¯­å¥
 INTO student(Sno,Sname,Ssex,Sage,Sdept)
-VALUES ('200515001','ÕÔİ¼İ¼',    'Å®'          ,23             ,'CS')
+VALUES ('200515001','èµµèè',    'å¥³'          ,23             ,'CS')
 INSERT
 INTO student(Sno,Sname,Ssex,Sage,Sdept)
-VALUES('200515002','ÀîÓÂ',	'ÄĞ',	20	,'CS')
+VALUES('200515002','æå‹‡',	'ç”·',	20	,'CS')
 INSERT
 INTO student(Sno,Sname,Ssex,Sage,Sdept)
-VALUES('200515003','ÕÅÁ¦',	'ÄĞ',	19	,'CS')
+VALUES('200515003','å¼ åŠ›',	'ç”·',	19	,'CS')
 INSERT
 INTO student(Sno,Sname,Ssex,Sage,Sdept)
-VALUES('200515004','ÕÅºâ',	'ÄĞ',	18	,'IS')
+VALUES('200515004','å¼ è¡¡',	'ç”·',	18	,'IS')
 INSERT
 INTO student(Sno,Sname,Ssex,Sage,Sdept)
-VALUES('200515005','ÕÅÏò¶«',    'ÄĞ',	20	,'IS')
+VALUES('200515005','å¼ å‘ä¸œ',    'ç”·',	20	,'IS')
 INSERT
 INTO student(Sno,Sname,Ssex,Sage,Sdept)
-VALUES('200515006','ÕÅÏòÀö',     'Å®',	20	,'IS')
+VALUES('200515006','å¼ å‘ä¸½',     'å¥³',	20	,'IS')
 INSERT
 INTO student(Sno,Sname,Ssex,Sage,Sdept)
-VALUES('200515007','Íõ·¼',	'Å®',	20	,'CS')
+VALUES('200515007','ç‹èŠ³',	'å¥³',	20	,'CS')
 INSERT
 INTO student(Sno,Sname,Ssex,Sage,Sdept)
-VALUES('200515008','ÍõÃñÉú',	'ÄĞ',	25	,'MA')
+VALUES('200515008','ç‹æ°‘ç”Ÿ',	'ç”·',	25	,'MA')
 INSERT
 INTO student(Sno,Sname,Ssex,Sage,Sdept)
-VALUES('200515009','ÍõĞ¡Ãñ',	'Å®',	18	,'MA')
+VALUES('200515009','ç‹å°æ°‘',	'å¥³',	18	,'MA')
 INSERT
 INTO student(Sno,Sname,Ssex,Sage,Sdept)
-VALUES('200515010','Àî³½',	'Å®',	22	,'MA')
+VALUES('200515010','æè¾°',	'å¥³',	22	,'MA')
 INSERT
 INTO student(Sno,Sname,Ssex,Sage,Sdept)
-VALUES('200515011','ÕÅÒã',	'ÄĞ',	20	,'WM')
+VALUES('200515011','å¼ æ¯…',	'ç”·',	20	,'WM')
 INSERT
 INTO student(Sno,Sname,Ssex,Sage,Sdept)
-VALUES('200515012','ÑîÀÚ',	'Å®',	20	,'EN')
+VALUES('200515012','æ¨ç£Š',	'å¥³',	20	,'EN')
 INSERT
 INTO student(Sno,Sname,Ssex,Sage,Sdept)
-VALUES('200515013','Àî³¿',	'Å®',	19	,'MA')
+VALUES('200515013','ææ™¨',	'å¥³',	19	,'MA')
 INSERT
 INTO student(Sno,Sname,Ssex,Sage,Sdept)
-VALUES('200515014','ÕÅ·áÒã'     ,'ÄĞ',	22	,'CS')
+VALUES('200515014','å¼ ä¸°æ¯…'     ,'ç”·',	22	,'CS')
 INSERT
 INTO student(Sno,Sname,Ssex,Sage,Sdept)
-VALUES('200515015','ÀîÀÙ',	'Å®',	21	,'EN')
+VALUES('200515015','æè•¾',	'å¥³',	21	,'EN')
 INSERT
 INTO student(Sno,Sname,Ssex,Sage,Sdept)
-VALUES('200515016','ÁõÉç',	'ÄĞ',	21	,'CM')
+VALUES('200515016','åˆ˜ç¤¾',	'ç”·',	21	,'CM')
 INSERT
 INTO student(Sno,Sname,Ssex,Sage,Sdept)
-VALUES('200515017','ÁõĞÇÒ«',	'ÄĞ',	18	,'CM')
+VALUES('200515017','åˆ˜æ˜Ÿè€€',	'ç”·',	18	,'CM')
 INSERT
 INTO student(Sno,Sname,Ssex,Sage,Sdept)
-VALUES('200515018','Àî¹ó',	'ÄĞ',	19	,'EN')
+VALUES('200515018','æè´µ',	'ç”·',	19	,'EN')
 INSERT
 INTO student(Sno,Sname,Ssex,Sage,Sdept)
-VALUES('200515019','ÁÖ×ÔĞí',	'ÄĞ',	20	,'WM')
+VALUES('200515019','æ—è‡ªè®¸',	'ç”·',	20	,'WM')
 INSERT
 INTO student(Sno,Sname,Ssex,Sage,Sdept)
-VALUES('200515020','ÂíÏè',	'ÄĞ',	21	,NULL)
+VALUES('200515020','é©¬ç¿”',	'ç”·',	21	,NULL)
 INSERT
 INTO student(Sno,Sname,Ssex,Sage,Sdept)
-VALUES('200515021','Áõ·å',	'ÄĞ',	25	,'CS')
+VALUES('200515021','åˆ˜å³°',	'ç”·',	25	,'CS')
 INSERT
 INTO student(Sno,Sname,Ssex,Sage,Sdept)
-VALUES('200515022','Áõ·å',	'ÄĞ',	22	,NULL)
+VALUES('200515022','åˆ˜å³°',	'ç”·',	22	,NULL)
 INSERT
 INTO student(Sno,Sname,Ssex,Sage,Sdept)
-VALUES('200515023','ÀîæÃæÃ',	'Å®',	18	,NULL)
+VALUES('200515023','æå©·å©·',	'å¥³',	18	,NULL)
 INSERT
 INTO student(Sno,Sname,Ssex,Sage,Sdept)
-VALUES('200515024','ÑÏÀö',	'Å®',	20	,NULL)
+VALUES('200515024','ä¸¥ä¸½',	'å¥³',	20	,NULL)
 INSERT
 INTO student(Sno,Sname,Ssex,Sage,Sdept)
-VALUES('200515025','ÖìĞ¡Å¸',	'Å®',	30	,'WM')
+VALUES('200515025','æœ±å°é¸¥',	'å¥³',	30	,'WM')
 INSERT
 INTO course(Cno,Cname,Cpno,Ccredit)
-VALUES(1,'Êı¾İ¿â',5,4)
+VALUES(1,'æ•°æ®åº“',5,4)
 INSERT
 INTO course(Cno,Cname,Cpno,Ccredit)
-VALUES(2,'ÊıÑ§',NULL,2)
+VALUES(2,'æ•°å­¦',NULL,2)
 INSERT
 INTO course(Cno,Cname,Cpno,Ccredit)
-VALUES(3,'ĞÅÏ¢ÏµÍ³',1,4)
+VALUES(3,'ä¿¡æ¯ç³»ç»Ÿ',1,4)
 INSERT
 INTO course(Cno,Cname,Cpno,Ccredit)
-VALUES(4,'²Ù×÷ÏµÍ³',6,3)
+VALUES(4,'æ“ä½œç³»ç»Ÿ',6,3)
 INSERT
 INTO course(Cno,Cname,Cpno,Ccredit)
-VALUES(5,'Êı¾İ½á¹¹',7,4)
+VALUES(5,'æ•°æ®ç»“æ„',7,4)
 INSERT
 INTO course(Cno,Cname,Cpno,Ccredit)
-VALUES(6,'Êı¾İ´¦Àí',NULL,2)
+VALUES(6,'æ•°æ®å¤„ç†',NULL,2)
 INSERT
 INTO course(Cno,Cname,Cpno,Ccredit)
-VALUES(7,'PASCALÓïÑÔ',6,4)
+VALUES(7,'PASCALè¯­è¨€',6,4)
 INSERT
 INTO course(Cno,Cname,Cpno,Ccredit)
-VALUES(8,'´óÑ§Ó¢Óï',NULL,4)
+VALUES(8,'å¤§å­¦è‹±è¯­',NULL,4)
 INSERT
 INTO course(Cno,Cname,Cpno,Ccredit)
-VALUES(9,'¼ÆËã»úÍøÂç',NULL,4)
+VALUES(9,'è®¡ç®—æœºç½‘ç»œ',NULL,4)
 INSERT
 INTO course(Cno,Cname,Cpno,Ccredit)
-VALUES(10,'ÈË¹¤ÖÇÄÜ',NULL,2)
+VALUES(10,'äººå·¥æ™ºèƒ½',NULL,2)
      
 
 INSERT
@@ -210,4 +210,4 @@ ADD e_mail char(20)
 ALTER TABLE student
 ALTER COLUMN Sdept VARCHAR(20)
 ALTER TABLE student
-DROP COLUMN phone    //ÊäÈëCASACDEÊ±Óï·¨±¨´í
+DROP COLUMN phone    //è¾“å…¥CASACDEæ—¶è¯­æ³•æŠ¥é”™
