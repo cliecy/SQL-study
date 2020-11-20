@@ -1,4 +1,4 @@
---1.	�ú���ʵ�֣���ĳ��רҵѡ����ĳ�ſγ̵�ѧ�������������ú�����������ϵ�����ݿ⡱�γ̵�ѡ��������
+--1.	用函数实现：求某个专业选修了某门课程的学生人数，并调用函数求出计算机系“数据库”课程的选课人数。
 GO
 CREATE FUNCTION Total_numer (@dept varchar(20),@cname nvarchar(10))
 RETURNS int
@@ -10,17 +10,17 @@ WHERE Sdept=@dept AND Cname=@cname;
 RETURN @output;
 END
 GO
-print dbo.Total_numer('CS','���ݿ�')
---2.	����Ƕ��ֵ����ʵ�֣���ѯĳ��רҵ����ѧ����ѡ��ÿ�ſε�ƽ���ɼ������øú�����������ϵ�����пγ̵�ƽ���ɼ���
+print dbo.Total_numer('CS','数据库')
+--2.	用内嵌表值函数实现：查询某个专业所有学生所选的每门课的平均成绩；调用该函数求出计算机系的所有课程的平均成绩。
 GO
 CREATE FUNCTION avggradeforcdept (@dept varchar(20))
 RETURNS TABLE
 AS
-RETURN (SELECT AVG(Grade) as 'ƽ���ɼ� ' FROM sc JOIN student ON (sc.Cno=student.Sno) WHERE Sdept= @dept )
+RETURN (SELECT AVG(Grade) as '平均成绩 ' FROM sc JOIN student ON (sc.Cno=student.Sno) WHERE Sdept= @dept )
 GO
 SELECT *
 FROM avggradeforcdept('CS')
---3.	����������ֵ������ͨ��ѧ����Ϊʵ�ε��øú���������ʾ��ѧ���������Լ����ſεĳɼ���ѧ�֣����øú��������200515002���ĸ��ſγɼ���ѧ�֡�
+--3.	创建多语句表值函数，通过学号作为实参调用该函数，可显示该学生的姓名以及各门课的成绩和学分，调用该函数求出“200515002”的各门课成绩和学分。
 GO
 CREATE FUNCTION XYZ (@sno char(9))
 RETURNS @OUTPUT TABLE(
@@ -41,8 +41,8 @@ END
 SELECT *
 FROM XYZ('200515002')
 
---4.	��дһ���洢���̣�ͳ��ĳ�ſγ̵����㣨90-100�����������ã�80-89���������еȣ�70-79������������60-69�������ͼ����ʣ�����������ǿγ̺ţ�
---������Ǹ����������������ʣ������ʵ���ʽ��90.25%��ִ�д洢���̣�����Ϣ����ʾ1�ſγ̵�ͳ����Ϣ��
+--4.	编写一个存储过程，统计某门课程的优秀（90-100）人数、良好（80-89）人数、中等（70-79）人数、及格（60-69）人数和及格率，其输入参数是课程号，
+--输出的是各级别人数及及格率，及格率的形式是90.25%，执行存储过程，在消息区显示1号课程的统计信息。
 GO
 CREATE PROC X @cno smallint
 AS 
@@ -68,7 +68,7 @@ PRINT str(@X)+' '+str(@Y)+' '+str(@Z)+' '+str(@A)+' '+str(@B*100)+'%'
 
 EXEC X 1
 
---5.	����һ��������������Ĵ洢���̣��ô洢���̸��ݴ����ѧ�����֣���ѯ��ѡ�޵Ŀγ����ͳɼ���ִ�д洢���̣�����Ϣ����ʾ������������Ϣ��
+--5.	创建一个带有输入参数的存储过程，该存储过程根据传入的学生名字，查询其选修的课程名和成绩，执行存储过程，在消息区显示赵箐箐的相关信息。
 GO
 CREATE PROC Y @sname nvarchar(10)
 AS 
@@ -76,10 +76,10 @@ SELECT Cname,Grade
 FROM sc JOIN course ON(sc.Cno=course.Cno) JOIN student ON(sc.Sno=student.Sno)
 WHERE Sname=@sname
 
-EXEC Y '��ݼݼ'
+EXEC Y '赵菁菁'
 
---6.	�Ի����� courseΪ������������²���
---������ʾ���±�����ʽ���α꣺���������г�ѧ����ѧ�ź�������Ȼ���ڴ�ѧ���£��г�����ѡ��ȫ���γ̵Ŀγ̺š��γ�����ѧ�֣��������ƣ�ֱ���г�ȫ��ѧ����
+--6.	以基本表 course为基础，完成如下操作
+--生成显示如下报表形式的游标：报表首先列出学生的学号和姓名，然后在此学生下，列出其所选的全部课程的课程号、课程名和学分；依此类推，直到列出全部学生。
 GO
 DECLARE @sno char(9)
 DECLARE @sname nvarchar(10)
@@ -114,7 +114,7 @@ FETCH NEXT FROM M1 INTO @sno,@sname
 END
 CLOSE M1
 DEALLOCATE M1
---7.	�����һ���洢����ʵ�����й��ܣ��ж�ĳ��רҵĳ�ſγ̳ɼ�����Ϊn��ѧ���ĳɼ��Ƿ���ڸ��ſγ̵�ƽ���֣��������ƽ���֣�����ɼ���Ϊƽ���֣��������ѧ�š���������š��γ̺š��γ������ɼ�������ʾ�������ڴ洢�����ڲ�ʹ���α꣩��
+--7.	请设计一个存储过程实现下列功能：判断某个专业某门课程成绩排名为n的学生的成绩是否低于该门课程的平均分，如果低于平均分，则将其成绩改为平均分，否则输出学号、姓名、班号、课程号、课程名、成绩。（提示：可以在存储过程内部使用游标）。
 GO
 CREATE PROC changegradeforlow
 @dept varchar(20),
@@ -153,8 +153,8 @@ WHERE student.Sno=@preS
 END
 DEALLOCATE youbiao
 
-EXEC changegradeforlow 'CS','���ݿ�',1
---8.	��student���ݿ���ƴ洢���̣�ʵ�ֽ�ĳ�ſγ̳ɼ����ڿγ�ƽ���ɼ���ѧ���ɼ�������3�֡�����ʾ����ʹ�ô洢�����ڲ�ʹ���α꣩
+EXEC changegradeforlow 'CS','数据库',1
+--8.	对student数据库设计存储过程，实现将某门课程成绩低于课程平均成绩的学生成绩都加上3分。（提示可以使用存储过程内部使用游标）
 GO
 CREATE PROC plusthree 
 @cname nvarchar(10)
@@ -189,8 +189,8 @@ FETCH NEXT FROM P1 INTO @preG
 END
 DEALLOCATE P1
 
---9.	��ƴ洢����ʵ��ѧ��תרҵ���ܣ�ĳ��ѧ����ѧ�ţ���תרҵʱ�������ת���רҵ�Ǽ����רҵ��ôҪ���ѧ����ƽ���ɼ����볬��95�֣���������תרҵ����
---��תרҵ����Ϣ���뵽һ��תרҵ�ı��changesd(ѧ�ţ�ԭרҵ����רҵ��ƽ���ɼ�)
+--9.	设计存储过程实现学生转专业功能：某个学生（学号）在转专业时，如果想转入的专业是计算机专业那么要求该学生的平均成绩必须超过95分，否则不允许转专业，并
+--将转专业的信息插入到一个转专业的表里，changesd(学号，原专业，新专业，平均成绩)
 CREATE TABLE changesd(
 Sno char(9),
 pSdept varchar(20),
@@ -206,7 +206,7 @@ AS
 IF(@dept='CS' AND (SELECT AVG(Grade) FROM sc WHERE Sno=@sno)<95)
 
 BEGIN
-print'�ɼ�������Ҫ�󣬲�����תרҵ'
+print'成绩不满足要求，不允许转专业'
 RETURN
 END
 
@@ -221,42 +221,42 @@ END
 
 
 /*
-10.	����ͼ��������ݿ⣬ ���а������¼�������
-���߱���reader(ѧ�ţ��������Ա����)
-�������lend��ѧ�ţ���ţ��������ڣ�Ӧ�����ڣ��Ƿ����裩
-Ƿ�����debt(ѧ�ţ����ڣ�Ƿ����)
-�������return(ѧ�ţ���ţ���������) 
-�����һ���洢����ʵ������������������Ҫ�����£�
-ֻ��û�г��ڵ���ſ������裨���������ʱ�䶼Ϊ30�죩�����޸�Ӧ�����ڣ�����ֻ�ܻ��飻����ʱɾ��������ڵĽ��ļ�¼����������в���һ�������¼��ע�⻹����
-��Ϊ��ǰ���ڣ����ҶԳ���ͼ�飬���ճ��ڵ���������������ÿ��ÿ���鷣��0.1Ԫ��������������Ϣ���뵽Ƿ����У�ͬʱ������Ӷ��߱��������۳���
+10.	现有图书管理数据库， 其中包含如下几个表：
+读者表：reader(学号，姓名，性别，余额)
+借书表：lend（学号，书号，借书日期，应还日期，是否续借）
+欠款表：debt(学号，日期，欠款金额)
+还书表：return(学号，书号，还书日期) 
+请设计一个存储过程实现续借或还书操作，具体要求如下：
+只有没有超期的书才可以续借（借书和续借时间都为30天），并修改应还日期，否则只能还书；还书时删除借书表内的借阅记录，并向还书表中插入一条还书记录，注意还书日
+期为当前日期，并且对超期图书，按照超期的天数计算出罚款金额（每天每本书罚款0.1元），并将罚款信息插入到欠款表中，同时将罚款从读者表的余额里扣除。
 */
 CREATE TABLE reader(
-ѧ�� char(9),
-���� nvarchar(10),
-�Ա� nchar(2),
-��� int
+学号 char(9),
+姓名 nvarchar(10),
+性别 nchar(2),
+余额 int
 )
 
 CREATE TABLE lend(
-ѧ�� char(9),
-��� char(9),
-�������� datetime,
-Ӧ������ datetime,
-�Ƿ����� nchar(1)
+学号 char(9),
+书号 char(9),
+借书日期 datetime,
+应还日期 datetime,
+是否续借 nchar(1)
 )
 
 CREATE TABLE debt
 (
-ѧ�� char(9),
-���� datetime,
-Ƿ���� int
+学号 char(9),
+日期 datetime,
+欠款金额 int
 )
 
 CREATE TABLE retur_n
 (
-ѧ�� char(9),
-��� char(9),
-�������� datetime
+学号 char(9),
+书号 char(9),
+还书日期 datetime
 )
 GO
 CREATE PROC forbookdb
@@ -268,9 +268,9 @@ DECLARE @lenddata datetime
 DECLARE @time int
 DECLARE @debt int
 
-SELECT @lenddata=lend.��������
+SELECT @lenddata=lend.借书日期
 FROM lend
-WHERE ѧ��=@Sno AND ���=@Bno
+WHERE 学号=@Sno AND 书号=@Bno
 
 SET @time=DATEDIFF(DAY,@lenddata,GETDATE())
 SET @debt=@time*0.1
@@ -282,13 +282,13 @@ BEGIN
 
 IF(@time>30)
 BEGIN
-print'�����������ڣ��������裬�뻹��'
+print'超出还书日期，不能续借，请还书'
 RETURN
 END
 
 UPDATE lend
-SET Ӧ������=Ӧ������+30
-WHERE ���=@Bno
+SET 应还日期=应还日期+30
+WHERE 书号=@Bno
 
 
 END
@@ -299,7 +299,7 @@ BEGIN
 
 DELETE 
 FROM lend
-WHERE ѧ��=@Sno AND ���=@Bno
+WHERE 学号=@Sno AND 书号=@Bno
 
 INSERT INTO retur_n
 VALUES(@Sno,@Bno,GETDATE())
@@ -311,8 +311,8 @@ INSERT debt
 VALUES(@Sno,GETDATE(),@debt)
 
 UPDATE reader
-SET ���=���-@debt
-WHERE ѧ��=@Sno
+SET 余额=余额-@debt
+WHERE 学号=@Sno
 
 END
 
